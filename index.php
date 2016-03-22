@@ -88,7 +88,7 @@ SQL;
                                 <div class="well">
                                         <h2>有料要爆？</h2>
                                         <p>即刻入黎畀料啦！</p>
-                                        <a class="btn btn-primary">按我畀料</a>
+                                        <a class="btn btn-primary" action="newpost.php">按我畀料</a>
                                 </div>
                         </div>
                 </div>
