@@ -56,7 +56,7 @@
 
                                         $sql = <<<SQL
     SELECT *
-    FROM `content` LIMIT 10 ORDER by id DESC
+    FROM `content`  ORDER BY time DESC
 SQL;
 
                                         //Prompt Error Query
@@ -65,11 +65,11 @@ SQL;
                                         }
 
                                         while($row = $result->fetch_assoc()) {
-                                                echo "<li class=\"media\">
-    <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" height=\"64\" width=\"64\"></a>
+                                            echo "<li class=\"media\">
+    <a class=\"pull-left\" href=\"read.php?id=".$row['id']."\"><img class=\"media-object\" src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" height=\"64\" width=\"64\"></a>
     <div class=\"media-body\">
-        <h4 class=\"media-heading\">" . $row['title'] . "</h4>
-        <p>" . $row['content'] . "</p></div></li>";
+        <h4 class=\"media-heading\"><a href=\"read.php?id=".$row['id']."\" >" . $row['title'] . "</a></h4>
+        <p>" . substr($row['content'], 0, 36) . "...</p><p class=\"text-right\" >由". $row['user'] ."提供</p></div></li>";
                                         }
                                         mysqli_close($link);
 
@@ -88,7 +88,7 @@ SQL;
                                 <div class="well">
                                         <h2>有料要爆？</h2>
                                         <p>即刻入黎畀料啦！</p>
-                                        <a href="newpost.php" class="btn btn-primary" action="newpost.php">按我畀料</a>
+                                        <a href="newpost.php" class="btn btn-primary">按我畀料</a>
                                 </div>
                         </div>
                 </div>
