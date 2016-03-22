@@ -56,7 +56,7 @@
 
                                         $sql = <<<SQL
     SELECT *
-    FROM `content`
+    FROM `content` LIMIT 10 ORDER by id DESC
 SQL;
 
                                         //Prompt Error Query
@@ -71,7 +71,7 @@ SQL;
         <h4 class=\"media-heading\">" . $row['title'] . "</h4>
         <p>" . $row['content'] . "</p></div></li>";
                                         }
-
+                                        mysqli_close($link);
 
                                         ?>
 
@@ -88,7 +88,7 @@ SQL;
                                 <div class="well">
                                         <h2>有料要爆？</h2>
                                         <p>即刻入黎畀料啦！</p>
-                                        <a class="btn btn-primary" action="newpost.php">按我畀料</a>
+                                        <a href="newpost.php" class="btn btn-primary" action="newpost.php">按我畀料</a>
                                 </div>
                         </div>
                 </div>
