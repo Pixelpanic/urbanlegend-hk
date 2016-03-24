@@ -20,6 +20,9 @@
                             data: $('form').serialize(),
                             success: function () {
                                 alert('貼出了...如果你不是機械人');
+                            },
+                            error: function(){
+                                alert('發貼失敗');
                             }
                         });
 
@@ -65,7 +68,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" >
+                            <form role="form">
                                 <div class="form-group" >
                                     <label class="control-label" for="exampleInputEmail1">你個名</label>
                                     <input class="form-control" name="user" placeholder="十八座大王？" type="text">
@@ -75,7 +78,7 @@
                                     <input class="form-control" name="title" placeholder="[突發]乜乜乜乜乜.." type="text" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="exampleInputEmail1">有咩事</label>
+                                    <label class="control-label" for="exampleInputEmail1">有咩事...*(<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">*你可使用GitHub Flavored Markdown</a>)</label>
                                     <textarea rows="5" class="form-control" name="content" placeholder="是咁的..." type="text" ></textarea>
                                 </div>
                                 <div class="form-group"><label class="control-label"

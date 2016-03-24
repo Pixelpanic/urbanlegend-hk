@@ -5,8 +5,12 @@
  * Date: 22/3/2016
  * Time: 11:07 PM
  */
-include("db_c.php");
-require_once "captcha.php";
+include("db_c.php"); // Connection details
+include("phasedown.php"); //Markdown parser
+require_once "captcha.php"; //Verify with Google reCaptcha
+
+//Define parsedown
+$parse = new Parsedown();
 
 // Server Key
 $secret = "6LeEghsTAAAAAPwOPcmuoVg61qwahnYf5IVZXHvt";
@@ -28,14 +32,20 @@ if ($_POST["g-recaptcha-response"]) {
 
 if ($response != null && $response->success) {
 
+    //Escape all HTML to avoid JS/PHP injection
     $title = htmlspecialchars($_POST["title"]);
     $user = htmlspecialchars($_POST["user"]);
     $content = htmlspecialchars($_POST["content"]);
     $location = htmlspecialchars($_POST["location"]);
     $ip = $_SERVER['REMOTE_ADDR'];
 
+    //Now we preserve line breaks
+    $content = nl2br($content);
+    //Now we phase markdown
+    $markdown = $parse->text($content);
+
     mysqli_query($link, "SELECT * FROM content");
-    mysqli_query($link, "INSERT INTO content (title,content,location,ip,user,time) VALUES ('$title', '$content', '$location','$ip' ,'$user', NOW() )");
+    mysqli_query($link, "INSERT INTO content (title,content,location,ip,user,time) VALUES ('$title', '$markdown', '$location','$ip' ,'$user', NOW() )");
     mysqli_close($link);
 
 } else {
