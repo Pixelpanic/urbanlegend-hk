@@ -108,15 +108,12 @@ SQL;
                                 </p>
                                 <div class="row">
                                         <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                                <a href="https://github.com/Pixelpanic/urbanlegend-hk"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                         </div>
                                 </div>
                                 <div class="row">
                                         <div class="col-md-12 hidden-xs text-right">
-                                                <a href="https://"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                                <a href="https://github.com/Pixelpanic/urbanlegend-hk/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                         </div>
                                 </div>
                         </div>

@@ -19,7 +19,7 @@
                             url: 'submit.php',
                             data: $('form').serialize(),
                             success: function () {
-                                alert('成功！');
+                                alert('貼出了...如果你不是機械人');
                             }
                         });
 
@@ -27,6 +27,7 @@
 
                 });
             </script>
+            <script src='https://www.google.com/recaptcha/api.js?=hl=zh-HK'></script>
 
 </head><body>
             <div class="navbar navbar-default navbar-static-top">
@@ -86,6 +87,7 @@
                                         <option value="OI">離島</option>
                                         </select>
                                 </div>
+                                <div class="g-recaptcha" data-sitekey="6LeEghsTAAAAAMTu4uNGdaLX1ipxMOUZCKQpk8U2"></div>
                                 <button type="submit" class="btn btn-default">提交</button>
                             </form>
                         </div>
@@ -106,15 +108,12 @@
                             </p>
                             <div class="row">
                                 <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                    <a href="https://github.com/Pixelpanic/urbanlegend-hk"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 hidden-xs text-right">
-                                    <a href="https://"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                    <a href="https://github.com/Pixelpanic/urbanlegend-hk/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                 </div>
                             </div>
                         </div>

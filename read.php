@@ -22,7 +22,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active">
+                            <li>
                                 <a href="/">主頁</a>
                             </li>
                             <li>
@@ -32,36 +32,57 @@
                     </div>
                 </div>
             </div>
+            
             <div class="section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
-                            <ul class="list-group">
-                                <li class="list-group-item">#奇人</li>
-                                <li class="list-group-item">#奇事</li>
-                                <li class="list-group-item">#都市傳說</li>
-                                <li class="list-group-item">#區議員柒事</li>
-                                <li class="list-group-item">#其他</li>
-                            </ul>
-                        </div>
-                        <?php
-                        $id = $_GET["id"];
-                        $sql = <<<SQL
-    SELECT *
-    FROM `content`  WHERE id = '$id'
+                        <div class="col-md-12">
+
+
+                            <?php
+                            $id = $_GET["id"];
+
+                            if ($id != null) {
+                                $sql = <<<SQL
+    SELECT * FROM `content`  WHERE id = '$id'
 SQL;
 
-//Prompt Error Query
-if(!$result = $link->query($sql)){
-    die('There was an error running the query [' . $link->error . ']');
-}
+                                //Prompt Error Query
+                                if (!$result = $link->query($sql)) {
+                                    die('There was an error running the query [' . $link->error . ']');
+                                }
 
-while($row = $result->fetch_assoc()) {
-    echo "<div class=\"col-md-8\"><h1>" . $row['title'] . "</h1><p>" . $row['content'] ."</p><p class=\"text-right\" contenteditable=\"true\">" . $row['user'] . $row['time'] . "</p></div>" ;
-}
-mysqli_close($link);
+                                while ($row = $result->fetch_assoc()) {
 
-?>
+                                    $imageid = $row['imageid'];
+
+                                    if ($imageid != null) {
+                                        echo "<img src=\"/images/" . $imageid . " \"class=\"img-responsive\">";
+                                    }
+
+                                    echo "<h1>" . $row['title'] . "</h1><p>" . $row['content'] . "</p><p class=\"text-right\" contenteditable=\"true\">by : " . $row['user'] . "/" . $row['time'] . "</p>";
+
+                                }
+
+                                mysqli_close($link);
+
+                            } else {
+
+
+                                echo "<h1>Error 404!</h1>";
+                            }
+                            ?>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>回覆</h1>
+                            <blockquote>
+                                <p contenteditable="true">回覆文</p>
+                                <footer contenteditable="true">作者 / 時間</footer>
+                            </blockquote>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,9 +91,9 @@ mysqli_close($link);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="well">
-                                <h2>有料要爆？</h2>
-                                <p>即刻入黎畀料啦！</p>
-                                <a href="newpost.php" class="btn btn-primary">按我畀料</a>
+                                <h2>回覆文章</h2>
+                                <form role="form"><div class="form-group"><label class="control-label" for="exampleInputEmail1">你個名</label><input class="form-control" id="exampleInputEmail1" name="cuser" placeholder="名..." type="text"></div><div class="form-group"><label class="control-label" for="exampleInputPassword1">內文</label><textarea rows="5" class="form-control" name="comment" placeholder="是咁的..." type="text" ></textarea></div><button type="submit" class="btn btn-default">貼出</button></form>
+                                
                             </div>
                         </div>
                     </div>
@@ -100,7 +121,7 @@ mysqli_close($link);
                             </div>
                             <div class="row">
                                 <div class="col-md-12 hidden-xs text-right">
-                                    <a href="https://"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                    <a href="https://github.com/Pixelpanic/urbanlegend-hk/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                 </div>
                             </div>
                         </div>
