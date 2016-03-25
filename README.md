@@ -1,5 +1,6 @@
 # urbanlegend-hk
-This script power up a small anonymous community board using MariaDB & PHP.
+
+*This script power up a small anonymous community board using MariaDB & PHP.*
 =====
 ###Advantages : 
 
