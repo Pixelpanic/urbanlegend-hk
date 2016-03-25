@@ -12,7 +12,7 @@ require_once "captcha.php"; //Verify with Google reCaptcha
 
 
 // Server Key
-$secret = "6LeEghsTAAAAAPwOPcmuoVg61qwahnYf5IVZXHvt";
+$secret = "YOUR KEY HERE";
 
 // empty response
 $response = null;
