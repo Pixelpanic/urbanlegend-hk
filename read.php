@@ -152,7 +152,11 @@ SQL;
                                     <div class="form-group"><label class="control-label"
                                                                    for="exampleInputPassword1">內文</label><textarea
                                             class="form-control" name="comment" rows="8" placeholder="是咁的..."
-                                            type="text"></textarea></div>
+                                            type="text"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                    <input name="tid" type="text" id="disabledTextInput" class="form-control" placeholder="" value="<?php echo $_GET['id']; ?>">
+                                    </div>
                                     <div class="g-recaptcha" data-sitekey="6LeEghsTAAAAAMTu4uNGdaLX1ipxMOUZCKQpk8U2"></div>
                                     <button type="submit" class="btn btn-default">貼出</button>
                                 </form>
@@ -195,69 +199,3 @@ SQL;
     
     </body></html>
 
-<?php
-/**
- * Created by PhpStorm.
- * User: pixoria
- * Date: 22/3/2016
- * Time: 11:07 PM
- */
-require_once "captcha.php"; //Verify with Google reCaptcha
-
-
-// Server Key
-$secret = "6LeEghsTAAAAAPwOPcmuoVg61qwahnYf5IVZXHvt";
-
-// empty response
-$response = null;
-
-// check secret key
-$reCaptcha = new ReCaptcha($secret);
-
-if (isset($_POST["cuser"])) {
-
-    // if submitted check response
-    if ($_POST["g-recaptcha-response"]) {
-        $response = $reCaptcha->verifyResponse(
-            $_SERVER["REMOTE_ADDR"],
-            $_POST["g-recaptcha-response"]
-        );
-    }
-
-    if ($response != null && $response->success) {
-
-        //Escape all HTML to avoid JS/PHP injection
-        $cuser = htmlspecialchars($_POST["cuser"]);
-        $comment = htmlspecialchars($_POST["comment"]);
-        $location = htmlspecialchars($_POST["location"]);
-        $ip = $_SERVER['REMOTE_ADDR'];
-
-        $escape = mysqli_real_escape_string($link, $content);
-
-
-        $query_post = "INSERT INTO comment (tid, cuser, comment, cip, ctime) VALUES ('$tid','$cuser','$comment', '$ip', NOW())";
-
-
-        //mysqli_query($link, "SELECT * FROM content");
-        if (mysqli_query($link, $query_post)) {
-
-            echo null;
-
-        } else {
-
-            echo mysqli_error($link);
-
-        }
-
-
-        mysqli_close($link);
-
-
-    } else {
-        return null;
-    }
-} else {
-    return null;
-}
-
-?>
