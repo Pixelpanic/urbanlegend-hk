@@ -867,7 +867,7 @@ class Parsedown
                 'alignments' => $alignments,
                 'identified' => true,
                 'element' => array(
-                    'name' => 'table',
+                    'name' => 'table class="table table-bordered"',
                     'handler' => 'elements',
                 ),
             );

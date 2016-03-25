@@ -54,22 +54,46 @@
                                 <ul class="media-list">
                                         <?php
 
+
+                                        #spilt pages
+                                        $requested_page = isset($_GET['page']) ? intval($_GET['page']) : 1;// Assume the page is 1
+
+                                        $r = mysqli_query($link,"SELECT COUNT(*) FROM content");
+                                        $d = mysqli_fetch_row($r);
+                                        $thread_count = $d[0];
+
+                                        $thread_per_page = 15;
+
+                                        // 55 products => $page_count = 3
+                                        $page_count = ceil($thread_count / $thread_per_page);
+
+                                        // You can check if $requested_page is > to $page_count OR < 1,
+                                        // and redirect to the page one.
+
+                                        $first_thread_shown = ($requested_page - 1) * $thread_per_page;
+
+
+
+
+                                        #SQL statement get 15 items per query
                                         $sql = <<<SQL
     SELECT *
-    FROM `content`  ORDER BY time DESC
+    FROM `content`  ORDER BY time DESC LIMIT $first_thread_shown, $thread_per_page
 SQL;
 
-                                        //Prompt Error Query
+
+                                        #Prompt Error Query
                                         if(!$result = $link->query($sql)){
                                                 die('There was an error running the query [' . $link->error . ']');
                                         }
 
+                                        #Loop post entries & shut all mysql link
                                         while($row = $result->fetch_assoc()) {
                                             echo "<li class=\"media\">
-    <a class=\"pull-left\" href=\"read.php?id=".$row['id']."\"><img class=\"media-object\" src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" height=\"64\" width=\"64\"></a>
+    <a class=\"pull-left\" href=\"read.php?id=" . $row['id'] . "\"><img class=\"media-object\" src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" height=\"64\" width=\"64\"></a>
     <div class=\"media-body\">
-        <h4 class=\"media-heading\"><a href=\"read.php?id=".$row['id']."\" >" . $row['title'] . "</a></h4>
-        <p>" . substr($row['content'], 0, 36) . "...</p><p class=\"text-right\" >由". $row['user'] ."提供</p></div></li>";
+        <h4 class=\"media-heading\"><a href=\"read.php?id=" . $row['id'] . "\" >" . $row['title'] . "</a></h4>
+        <p>" . substr($row['content'], 0, 36) . "...</p><p class=\"text-right\" >由" . $row['user'] . "提供</p></div></li>";
                                         }
                                         mysqli_close($link);
 
@@ -78,6 +102,28 @@ SQL;
                                         <li class="media"></li>
                                 </ul>
                         </div>
+                    <?php
+
+
+
+
+                    #Count total pages
+
+
+                    $total_pages = ceil($row / 15);
+
+                    #Generate list of links
+                    echo '<p>';
+                    for($i=1; $i<=$page_count; $i++) {
+                        if($i == $requested_page) {
+                            echo $i;
+                        } else {
+                            echo '<a href="?page='.$i.'">'.$i.'</a> ';
+                        }
+                    }
+                    echo '</p>';
+
+                    ?>
                 </div>
         </div>
 </div>
