@@ -2,8 +2,14 @@
 
 include("db_c.php");
 include("phasedown.php"); //Markdown parser
+#Get post id
 $id = $_GET["id"];
+#If id is not int then will set as 0(Default 404)
+if ( is_int($id) == false ){
 
+    $id = 0;
+
+}
 
 
 ?>
