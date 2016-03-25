@@ -1,4 +1,9 @@
-<?php include("db_c.php"); ?>
+<?php
+
+include("db_c.php");
+include("phasedown.php"); //Markdown parser
+
+?>
 <html><head>
             <meta name="description" content="【怪人】每區都有怪人，你果區又有咩怪人呢？">
             <title>香港奇人&amp;都市傳說資料庫 Beta</title>
@@ -40,6 +45,9 @@
 
 
                             <?php
+
+                            //Now we phase markdown
+
                             $id = $_GET["id"];
 
                             if ($id != null) {
@@ -59,8 +67,9 @@ SQL;
                                     if ($imageid != null) {
                                         echo "<img src=\"/images/" . $imageid . " \"class=\"img-responsive\">";
                                     }
-
-                                    echo "<h1>" . $row['title'] . "</h1><p>" . $row['content'] . "</p><p class=\"text-right\" contenteditable=\"true\">by : " . $row['user'] . "/" . $row['time'] . "</p>";
+                                    //We parse markdown here
+                                    $markdown = Parsedown::instance()->text($row['content']);
+                                    echo "<h1>" . $row['title'] . "</h1><p>" . $markdown . "</p><p class=\"text-right\" contenteditable=\"true\">by : " . $row['user'] . "/" . $row['time'] . "</p>";
 
                                 }
 
@@ -92,7 +101,7 @@ SQL;
                         <div class="col-md-12">
                             <div class="well">
                                 <h2>回覆文章</h2>
-                                <form role="form"><div class="form-group"><label class="control-label" for="exampleInputEmail1">你個名</label><input class="form-control" id="exampleInputEmail1" name="cuser" placeholder="名..." type="text"></div><div class="form-group"><label class="control-label" for="exampleInputPassword1">內文</label><textarea rows="5" class="form-control" name="comment" placeholder="是咁的..." type="text" ></textarea></div><button type="submit" class="btn btn-default">貼出</button></form>
+                                <form role="form"><div class="form-group"><label class="control-label" for="exampleInputEmail1">你個名</label><input class="form-control" id="exampleInputEmail1" name="cuser" placeholder="名..." type="text"></div><div class="form-group"><label class="control-label" for="exampleInputPassword1">內文</label><textarea class="form-control" name="comment" placeholder="是咁的..." type="text" ></textarea></div><button type="submit" class="btn btn-default">貼出</button></form>
                                 
                             </div>
                         </div>

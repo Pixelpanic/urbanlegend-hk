@@ -56,8 +56,7 @@
                     </div>
                 </div>
             </div>
-            
-            
+
             
             <div class="section">
                 <div class="container">
@@ -68,21 +67,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form">
+                            <form role="form" >
                                 <div class="form-group" >
-                                    <label class="control-label" for="exampleInputEmail1">你個名</label>
+                                    <label class="control-label">你個名</label>
                                     <input class="form-control" name="user" placeholder="十八座大王？" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="exampleInputEmail1">大標題</label>
+                                    <label class="control-label">大標題</label>
                                     <input class="form-control" name="title" placeholder="[突發]乜乜乜乜乜.." type="text" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="exampleInputEmail1">有咩事...*(<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">*你可使用GitHub Flavored Markdown</a>)</label>
-                                    <textarea rows="5" class="form-control" name="content" placeholder="是咁的..." type="text" ></textarea>
+                                    <label class="control-label">有咩事...*(<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">*你可使用GitHub Flavored Markdown</a>)</label>
+                                    <textarea class="form-control" rows="8" name="content" placeholder="是咁的..." type="text" ></textarea>
                                 </div>
-                                <div class="form-group"><label class="control-label"
-                                                               for="exampleInputEmail1">係邊度</label><select
+                                <div class="form-group"><label class="control-label">係邊度</label>
+                                    <select
                                         class="form-control" name="location">
                                         <option value="HK">香港</option>
                                         <option value="KL">九龍</option>
