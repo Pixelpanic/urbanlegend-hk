@@ -87,6 +87,7 @@
                                         <option value="KL">九龍</option>
                                         <option value="NT">新界</option>
                                         <option value="OI">離島</option>
+                                        <option value="LC">區議員柒事</option>
                                         </select>
                                 </div>
                                 <div class="g-recaptcha" data-sitekey="6LeEghsTAAAAAMTu4uNGdaLX1ipxMOUZCKQpk8U2"></div>

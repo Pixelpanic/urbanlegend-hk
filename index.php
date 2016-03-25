@@ -43,11 +43,11 @@
                 <div class="row">
                         <div class="col-md-4">
                                 <ul class="list-group">
-                                        <li class="list-group-item">#奇人</li>
-                                        <li class="list-group-item">#奇事</li>
-                                        <li class="list-group-item">#都市傳說</li>
-                                        <li class="list-group-item">#區議員柒事</li>
-                                        <li class="list-group-item">#其他</li>
+                                        <li class="list-group-item">#香港</li>
+                                        <li class="list-group-item">#九龍</li>
+                                        <li class="list-group-item">#新界</li>
+                                        <li class="list-group-item">#離島</li>
+                                        <li class="list-group-item">#全部</li>
                                 </ul>
                         </div>
                         <div class="col-md-8">
@@ -113,7 +113,7 @@ SQL;
                     $total_pages = ceil($row / 15);
 
                     #Generate list of links
-                    echo '<p>';
+                    echo '<p> Page:';
                     for($i=1; $i<=$page_count; $i++) {
                         if($i == $requested_page) {
                             echo $i;
