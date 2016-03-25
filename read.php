@@ -3,7 +3,6 @@
 include("db_c.php");
 include("phasedown.php"); //Markdown parser
 $id = $_GET["id"];
-$tid = $id;
 ?>
 <html><head>
             <meta name="description" content="【怪人】每區都有怪人，你果區又有咩怪人呢？">
@@ -24,7 +23,7 @@ $tid = $id;
 
                         $.ajax({
                             type: 'post',
-                            url: 'read.php',
+                            url: 'reply.php',
                             data: $('form').serialize(),
                             success: function () {
                                 alert('貼出了...如果你不是機械人');
@@ -155,7 +154,7 @@ SQL;
                                             type="text"></textarea>
                                     </div>
                                     <div class="form-group">
-                                    <input name="tid" type="text" id="disabledTextInput" class="form-control" placeholder="" value="<?php echo $_GET['id']; ?>">
+                                    <input readonly="readonly" name="tid" type="text" id="disabledInput" class="form-control" placeholder="<?php echo $_GET['id']; ?>" value="<?php echo $_GET['id']; ?>">
                                     </div>
                                     <div class="g-recaptcha" data-sitekey="6LeEghsTAAAAAMTu4uNGdaLX1ipxMOUZCKQpk8U2"></div>
                                     <button type="submit" class="btn btn-default">貼出</button>
@@ -180,10 +179,7 @@ SQL;
                             </p>
                             <div class="row">
                                 <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                    <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                    <a href="https://github.com/Pixelpanic/urbanlegend-hk/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                                 </div>
                             </div>
                             <div class="row">

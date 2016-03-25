@@ -6,6 +6,8 @@
  * Time: 7:51 PM
  */
 
+include("db_c.php");
+
 require_once "captcha.php"; //Verify with Google reCaptcha
 
 
@@ -33,7 +35,7 @@ if (isset($_POST["cuser"])) {
         //Escape all HTML to avoid JS/PHP injection
         $cuser = htmlspecialchars($_POST["cuser"]);
         $comment = htmlspecialchars($_POST["comment"]);
-        $location = htmlspecialchars($_POST["location"]);
+        $tid = $_POST['tid'];
         $ip = $_SERVER['REMOTE_ADDR'];
 
         $escape = mysqli_real_escape_string($link, $content);
