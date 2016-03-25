@@ -3,6 +3,9 @@
 include("db_c.php");
 include("phasedown.php"); //Markdown parser
 $id = $_GET["id"];
+
+
+
 ?>
 <html><head>
             <meta name="description" content="【怪人】每區都有怪人，你果區又有咩怪人呢？">
@@ -26,7 +29,13 @@ $id = $_GET["id"];
                             url: 'reply.php',
                             data: $('form').serialize(),
                             success: function () {
-                                alert('貼出了...如果你不是機械人');
+                                //alert('貼出了...如果你不是機械人');
+
+                                setTimeout(
+                                    function()
+                                    {
+                                        location.reload();
+                                    }, 0001);
                             },
                             error: function(){
                                 alert('發貼失敗');
@@ -71,17 +80,16 @@ $id = $_GET["id"];
 
                             <?php
 
-                            //Now we phase markdown
+                            $id = mysqli_real_escape_string($link, $id);
 
-                            $id = $_GET["id"];
-                            $tid = $id;
 
+                            #Get post thread
                             if ($id != null) {
                                 $sql = <<<SQL
     SELECT * FROM `content`  WHERE id = '$id'
 SQL;
 
-                                //Prompt Error Query
+                                #Prompt Error Query
                                 if (!$result = $link->query($sql)) {
                                     die('There was an error running the query [' . $link->error . ']');
                                 }
@@ -102,10 +110,12 @@ SQL;
 
                                 echo "</div></div><div class=\"row\"><div class=\"col-md-12\"><h1>回覆</h1>";
 
+                                #Get Reply thread
                                 $reply_sql = <<<SQL
 SELECT * FROM comment WHERE tid = '$id'
 SQL;
 
+                                #Prompt Error
                                 if (!$result = $link->query($reply_sql)) {
                                 die('There was an error running the query [' . $link->error . ']');
                             }
@@ -113,10 +123,9 @@ SQL;
                                 while ($crow = $result->fetch_assoc()) {
 
 
-
                                     //We parse markdown here
-                                    $markdown = Parsedown::instance()->text($row['content']);
-                                    echo "<blockquote><p contenteditable=\"true\">". $crow['comment']."</p><footer contenteditable=\"true\">".$crow['cuser']." / ". $crow['ctime']."</footer></blockquote>";
+                                    $cmarkdown = Parsedown::instance()->text($crow['comment']);
+                                    echo "<blockquote><p contenteditable=\"true\">". $cmarkdown ."</p><footer contenteditable=\"true\">".$crow['cuser']." / ". $crow['ctime']."</footer></blockquote>";
 
                                 }
 
@@ -154,7 +163,7 @@ SQL;
                                             type="text"></textarea>
                                     </div>
                                     <div class="form-group">
-                                    <input readonly="readonly" name="tid" type="text" id="disabledInput" class="form-control" placeholder="<?php echo $_GET['id']; ?>" value="<?php echo $_GET['id']; ?>">
+                                    <input readonly="readonly" name="tid" type="text" id="disabledInput" class="form-control" placeholder="<?php echo $id; ?>" value="<?php echo $id; ?>">
                                     </div>
                                     <div class="g-recaptcha" data-sitekey="6LeEghsTAAAAAMTu4uNGdaLX1ipxMOUZCKQpk8U2"></div>
                                     <button type="submit" class="btn btn-default">貼出</button>
